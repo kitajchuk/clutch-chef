@@ -1,4 +1,4 @@
-clutch
-======
+clutch-chef
+===========
 
-> A modern headless CMS scaffold.
+> An OpsWorks Chef recipe for clutch.
