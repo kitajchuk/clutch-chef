@@ -7,6 +7,4 @@ clutch-chef
 
 ### Overview
 
-This recipe will configure the following:
-
-* EC2 Instances ( linux — staging/production )
+More information to come...
