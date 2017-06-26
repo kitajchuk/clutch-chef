@@ -65,11 +65,6 @@ commands=<%= @config.commands %>
 <% if @config.debuglevel %>
 debuglevel=<%= @config.debuglevel %>
 <% end %>
-<% if @config.deltarpm == true %>
-deltarpm=1
-<% elsif @config.deltarpm == false %>
-deltarpm=0
-<% end %>
 <% if @config.diskspacecheck %>
 diskspacecheck=<%= @config.diskspacecheck %>
 <% end %>
@@ -134,9 +129,7 @@ keepcache=0
 kernelpkgnames=<%= @config.kernelpkgnames %>
 <% end %>
 <% if @config.localpkg_gpgcheck %>
-localpkg_gpgcheck=1
-<% else %>
-localpkg_gpgcheck=0
+localpkg_gpgcheck=<%= @config.localpkg_gpgcheck %>
 <% end %>
 <% if @config.logfile %>
 logfile=<%= @config.logfile %>
@@ -233,7 +226,7 @@ sslclientcert=<%= @config.sslclientcert %>
 sslclientkey=<%= @config.sslclientkey %>
 <% end %>
 <% unless @config.sslverify.nil? %>
-sslverify=<%= ( @config.sslverify ) ? 'true' : 'false' %>
+sslverify=<%= @config.sslverify %>
 <% end %>
 <% if @config.syslog_device %>
 syslog_device=<%= @config.syslog_device %>
