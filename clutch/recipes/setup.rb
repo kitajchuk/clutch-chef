@@ -45,18 +45,8 @@ end
 
 
 # Step 3.0: php.ini config
-template "/etc/php.ini" do
-    source "php.ini"
-    action :touch
-end
-
-
-
-# Step 4.0: php-fpm config
-template "/etc/php-fpm.d/www.conf" do
-    source "www.conf"
-    action :touch
-end
+node["php"]["directives"]["error_log"] = "/var/log/php-error.log"
+node["php"]["directives"]["date.timezone"] = "\"UTC\""
 
 
 
