@@ -36,15 +36,31 @@ end
 
 
 
-# Step 2.0: nginx config
+# Step 2.0: nginx.conf config
 template "/etc/nginx/nginx.conf" do
     source "nginx.conf"
+    action :create
+end
+
+
+
+# Step 3.0: php.ini config
+template "/etc/php.ini" do
+    source "php.ini"
     action :touch
 end
 
 
 
-# Step 3.0: finalization
+# Step 4.0: php-fpm config
+template "/etc/php-fpm.d/www.conf" do
+    source "www.conf"
+    action :touch
+end
+
+
+
+# Step ???.0: finalization
 # finalizations = [
 #     "chown -R root /var/www/html",
 #     "chmod -R 775 /var/www/html",
