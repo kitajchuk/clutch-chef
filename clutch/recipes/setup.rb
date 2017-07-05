@@ -20,6 +20,10 @@
 
 
 
-execute "echo 'test' > test.txt" do
-    command "echo 'test' > test.txt"
+commands = ["yum update -y", "yum install -y nginx", "chkconfig nginx on", "yum -y install php55 php55-fpm php55-bcmath php55-devel php55-common php55-cli php55-pecl-apc php55-pdo php55-mysql php55-xml php55-gd php55-mbstring php-pear php55-mysqlnd php55-mcrypt"]
+
+
+
+commands.each do |comm|
+    command comm
 end
