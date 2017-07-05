@@ -37,6 +37,10 @@ end
 
 
 # Step 2.0: nginx config
+template "/etc/nginx/nginx.conf" do
+    source "nginx.conf"
+    action :create
+end
 
 
 
