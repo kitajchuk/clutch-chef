@@ -1,7 +1,7 @@
 clutch-chef
 ===========
 
-> An OpsWorks Chef recipe for clutch.
+> An OpsWorks Chef cookbook for clutch.
 
 
 
