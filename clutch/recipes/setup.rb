@@ -20,6 +20,7 @@
 
 
 
+# Step 1.0: nginx install
 commands = [
     "yum update -y",
     "yum install -y nginx",
@@ -27,10 +28,30 @@ commands = [
     "yum -y install php55 php55-fpm php55-bcmath php55-devel php55-common php55-cli php55-pecl-apc php55-pdo php55-mysql php55-xml php55-gd php55-mbstring php-pear php55-mysqlnd php55-mcrypt"
 ]
 
-
-
 commands.each do |com|
-    execute com
+    execute com do
         command com
     end
 end
+
+
+
+# Step 2.0: nginx config
+
+
+
+# Step 3.0: finalization
+# finalizations = [
+#     "chown -R root /var/www/html",
+#     "chmod -R 775 /var/www/html",
+#     "chkconfig nginx on",
+#     "service nginx start",
+#     "chkconfig php-fpm on",
+#     "service php-fpm start"
+# ]
+#
+# finalizations.each do |fin|
+#     execute fin
+#         command fin
+#     end
+# end
