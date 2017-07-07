@@ -20,6 +20,10 @@
 
 
 
+node_version = "v6.11.0"
+
+
+
 # Step 1.0: nginx install
 commands = [
     "yum update -y",
@@ -108,17 +112,11 @@ end
 
 
 
-# Step 6.0: node.js install
+# Step 6.0: node+npm install
 commands = [
-    "yum install gcc-c++ make",
-    "yum install openssl-devel",
-    "yum install git",
-    "git clone git://github.com/nodejs/node.git",
-    "cd node",
-    "git checkout v6.11.0",
-    "./configure",
-    "make",
-    "make install",
+    "wget https://nodejs.org/dist/v6.11.0/node-v6.11.0-linux-x64.tar.xz",
+    "tar xf node-v6.11.0-linux-x64.tar.xz",
+    "rm node-v6.11.0-linux-x64.tar.xz",
     "iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8000"
 ]
 
@@ -131,19 +129,4 @@ end
 replace_line "/etc/sudoers" do
     replace /^.*Defaults secure_path = .*$/
     with "Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin"
-end
-
-
-
-# Step 7.0: npm install
-commands = [
-    "git clone https://github.com/npm/npm.git",
-    "cd npm",
-    "make install"
-]
-
-commands.each do |com|
-    execute com do
-        command com
-    end
 end
