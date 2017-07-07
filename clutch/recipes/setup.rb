@@ -110,7 +110,7 @@ end
 
 # Step 6.0: node.js install
 commands = [
-    "cd /home/ec2-user",
+    "cd /",
     "yum install gcc-c++ make",
     "yum install openssl-devel",
     "yum install git",
@@ -138,7 +138,7 @@ end
 
 # Step 7.0: npm install
 commands = [
-    "cd /home/ec2-user",
+    "cd /",
     "git clone https://github.com/npm/npm.git",
     "cd npm",
     "make install"
