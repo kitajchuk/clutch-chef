@@ -44,24 +44,64 @@ end
 
 
 
-# Step 3.0: php.ini config
-node["php"]["directives"]["error_log"] = "/var/log/php-error.log"
-node["php"]["directives"]["date.timezone"] = "\"UTC\""
+# Step 3.0: php-fpm config
+replace "/etc/php-fpm.d/www.conf" do
+    replace /^.*listen =.*$/
+    with "listen = /var/run/php-fpm/php-fpm.sock"
+end
+
+replace "/etc/php-fpm.d/www.conf" do
+    replace /^.*listen\.owner =.*$/
+    with "listen.owner = nginx"
+end
+
+replace "/etc/php-fpm.d/www.conf" do
+    replace /^.*listen\.group =.*$/
+    with "listen.group = nginx"
+end
+
+replace "/etc/php-fpm.d/www.conf" do
+    replace /^.*listen\.mode =.*$/
+    with "listen.mode = 0664"
+end
+
+replace "/etc/php-fpm.d/www.conf" do
+    replace /^.*listen =.*$/
+    with "user = nginx"
+end
+
+replace "/etc/php-fpm.d/www.conf" do
+    replace /^.*listen =.*$/
+    with "group = nginx"
+end
 
 
 
-# Step ???.0: finalization
-# finalizations = [
-#     "chown -R root /var/www/html",
-#     "chmod -R 775 /var/www/html",
-#     "chkconfig nginx on",
-#     "service nginx start",
-#     "chkconfig php-fpm on",
-#     "service php-fpm start"
-# ]
-#
-# finalizations.each do |fin|
-#     execute fin
-#         command fin
-#     end
-# end
+# Step 4.0: php.ini config
+replace "/etc/php.ini" do
+    replace /^.*error_log =.*$/
+    with "error_log = /var/log/php-error.log"
+end
+
+replace "/etc/php.ini" do
+    replace /^.*date\.timezone =.*$/
+    with "date.timezone = \"UTC\""
+end
+
+
+
+# Step 5.0: finalization
+finalizations = [
+    "chown -R root /var/www/html",
+    "chmod -R 775 /var/www/html",
+    "chkconfig nginx on",
+    "service nginx start",
+    "chkconfig php-fpm on",
+    "service php-fpm start"
+]
+
+finalizations.each do |fin|
+    execute fin do
+        command fin
+    end
+end
