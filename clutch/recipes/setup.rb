@@ -122,7 +122,7 @@ commands = [
     "mv /node-#{node_version}-linux-x64/bin/npm /usr/local/bin/npm",
     "mv /node-#{node_version}-linux-x64/lib/node_modules /usr/local/lib/node_modules",
     "rm -rf /node-#{node_version}-linux-x64.tar.xz",
-    "rm /node-#{node_version}-linux-x64",
+    "rm -rf /node-#{node_version}-linux-x64",
     "npm install npm@#{npm_version} -g",
     "iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8000"
 ]
