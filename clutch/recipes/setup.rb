@@ -127,6 +127,6 @@ commands.each do |com|
 end
 
 replace_line "/etc/sudoers" do
-    replace /^.*Defaults secure_path = .*$/
+    replace /^.*Defaults .*secure_path = .*$/
     with "Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin"
 end
