@@ -20,11 +20,6 @@
 
 
 
-# Patch replace methods
-require "patch"
-
-
-
 # Step 1.0: nginx install
 commands = [
     "yum update -y",
