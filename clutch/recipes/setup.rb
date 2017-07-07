@@ -36,7 +36,7 @@ end
 
 
 
-# Step 2.0: nginx.conf config
+# Step 2.0: nginx config
 template "/etc/nginx/nginx.conf" do
     source "nginx.conf"
     action :create
@@ -77,7 +77,7 @@ end
 
 
 
-# Step 4.0: php.ini config
+# Step 4.0: php config
 replace_line "/etc/php.ini" do
     replace /^.*error_log =.*$/
     with "error_log = /var/log/php-error.log"
@@ -91,7 +91,7 @@ end
 
 
 # Step 5.0: finalization
-finalizations = [
+commands = [
     "chown -R root /var/www/html",
     "chmod -R 775 /var/www/html",
     "chkconfig nginx on",
@@ -100,17 +100,52 @@ finalizations = [
     "service php-fpm start"
 ]
 
-finalizations.each do |fin|
-    execute fin do
-        command fin
+commands.each do |com|
+    execute com do
+        command com
     end
 end
 
 
 
 # Step 6.0: node.js install
+commands = [
+    "cd /home/ec2-user",
+    "yum install gcc-c++ make",
+    "yum install openssl-devel",
+    "yum install git",
+    "git clone git://github.com/nodejs/node.git",
+    "cd node",
+    "git checkout v6.11.0",
+    "./configure",
+    "make",
+    "make install",
+    "iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8000"
+]
 
+commands.each do |com|
+    execute com do
+        command com
+    end
+end
+
+replace_line "/etc/sudoers" do
+    replace /^.*Defaults secure_path = .*$/
+    with "Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin"
+end
 
 
 
 # Step 7.0: npm install
+commands = [
+    "cd /home/ec2-user",
+    "git clone https://github.com/npm/npm.git",
+    "cd npm",
+    "make install"
+]
+
+commands.each do |com|
+    execute com do
+        command com
+    end
+end
