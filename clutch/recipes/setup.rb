@@ -66,12 +66,12 @@ replace "/etc/php-fpm.d/www.conf" do
 end
 
 replace "/etc/php-fpm.d/www.conf" do
-    replace /^.*listen =.*$/
+    replace /^.*user =.*$/
     with "user = nginx"
 end
 
 replace "/etc/php-fpm.d/www.conf" do
-    replace /^.*listen =.*$/
+    replace /^.*group =.*$/
     with "group = nginx"
 end
 
