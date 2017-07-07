@@ -21,6 +21,8 @@
 
 
 node_version = "v6.11.0"
+npm_version = "latest"
+node_bin = "/usr/local/bin"
 
 
 
@@ -50,32 +52,32 @@ end
 
 # Step 3.0: php-fpm config
 replace_line "/etc/php-fpm.d/www.conf" do
-    replace /^.*listen =.*$/
+    replace /^listen =.*$/
     with "listen = /var/run/php-fpm/php-fpm.sock"
 end
 
 replace_line "/etc/php-fpm.d/www.conf" do
-    replace /^.*listen\.owner =.*$/
+    replace /^listen\.owner =.*$/
     with "listen.owner = nginx"
 end
 
 replace_line "/etc/php-fpm.d/www.conf" do
-    replace /^.*listen\.group =.*$/
+    replace /^listen\.group =.*$/
     with "listen.group = nginx"
 end
 
 replace_line "/etc/php-fpm.d/www.conf" do
-    replace /^.*listen\.mode =.*$/
+    replace /^listen\.mode =.*$/
     with "listen.mode = 0664"
 end
 
 replace_line "/etc/php-fpm.d/www.conf" do
-    replace /^.*user =.*$/
+    replace /^user =.*$/
     with "user = nginx"
 end
 
 replace_line "/etc/php-fpm.d/www.conf" do
-    replace /^.*group =.*$/
+    replace /^group =.*$/
     with "group = nginx"
 end
 
@@ -83,12 +85,12 @@ end
 
 # Step 4.0: php config
 replace_line "/etc/php.ini" do
-    replace /^.*error_log =.*$/
+    replace /^error_log =.*$/
     with "error_log = /var/log/php-error.log"
 end
 
 replace_line "/etc/php.ini" do
-    replace /^.*date\.timezone =.*$/
+    replace /^date\.timezone =.*$/
     with "date.timezone = \"UTC\""
 end
 
@@ -114,9 +116,14 @@ end
 
 # Step 6.0: node+npm install
 commands = [
-    "wget https://nodejs.org/dist/v6.11.0/node-v6.11.0-linux-x64.tar.xz",
-    "tar xf node-v6.11.0-linux-x64.tar.xz",
-    "rm node-v6.11.0-linux-x64.tar.xz",
+    "wget https://nodejs.org/dist/#{node_version}/node-#{node_version}-linux-x64.tar.xz",
+    "tar xf node-#{node_version}-linux-x64.tar.xz",
+    "mv /node-#{node_version}-linux-x64/bin/node /usr/local/bin/node",
+    "mv /node-#{node_version}-linux-x64/bin/npm /usr/local/bin/npm",
+    "mv /node-#{node_version}-linux-x64/lib/node_modules /usr/local/lib/node_modules"
+    "rm -rf /node-#{node_version}-linux-x64.tar.xz",
+    "rm /node-#{node_version}-linux-x64",
+    "npm install npm@#{npm_version} -g",
     "iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8000"
 ]
 
@@ -127,6 +134,6 @@ commands.each do |com|
 end
 
 replace_line "/etc/sudoers" do
-    replace /^.*Defaults .*secure_path = .*$/
-    with "Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin"
+    replace /^Defaults .*secure_path = .*$/
+    with "Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin:#{node_bin}"
 end
