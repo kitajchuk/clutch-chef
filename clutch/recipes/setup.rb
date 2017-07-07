@@ -20,6 +20,11 @@
 
 
 
+# Patch replace methods
+require "patch"
+
+
+
 # Step 1.0: nginx install
 commands = [
     "yum update -y",
@@ -105,3 +110,12 @@ finalizations.each do |fin|
         command fin
     end
 end
+
+
+
+# Step 6.0: node.js install
+
+
+
+
+# Step 7.0: npm install
