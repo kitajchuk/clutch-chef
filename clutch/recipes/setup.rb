@@ -45,32 +45,32 @@ end
 
 
 # Step 3.0: php-fpm config
-replace "/etc/php-fpm.d/www.conf" do
+replace_line "/etc/php-fpm.d/www.conf" do
     replace /^.*listen =.*$/
     with "listen = /var/run/php-fpm/php-fpm.sock"
 end
 
-replace "/etc/php-fpm.d/www.conf" do
+replace_line "/etc/php-fpm.d/www.conf" do
     replace /^.*listen\.owner =.*$/
     with "listen.owner = nginx"
 end
 
-replace "/etc/php-fpm.d/www.conf" do
+replace_line "/etc/php-fpm.d/www.conf" do
     replace /^.*listen\.group =.*$/
     with "listen.group = nginx"
 end
 
-replace "/etc/php-fpm.d/www.conf" do
+replace_line "/etc/php-fpm.d/www.conf" do
     replace /^.*listen\.mode =.*$/
     with "listen.mode = 0664"
 end
 
-replace "/etc/php-fpm.d/www.conf" do
+replace_line "/etc/php-fpm.d/www.conf" do
     replace /^.*user =.*$/
     with "user = nginx"
 end
 
-replace "/etc/php-fpm.d/www.conf" do
+replace_line "/etc/php-fpm.d/www.conf" do
     replace /^.*group =.*$/
     with "group = nginx"
 end
@@ -78,12 +78,12 @@ end
 
 
 # Step 4.0: php.ini config
-replace "/etc/php.ini" do
+replace_line "/etc/php.ini" do
     replace /^.*error_log =.*$/
     with "error_log = /var/log/php-error.log"
 end
 
-replace "/etc/php.ini" do
+replace_line "/etc/php.ini" do
     replace /^.*date\.timezone =.*$/
     with "date.timezone = \"UTC\""
 end
