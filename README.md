@@ -23,7 +23,7 @@ This section will walk through setting up the `Clutch Stack` under AWS OpsWorks.
 3. Run `chmod 400 ~/.ssh/clutch.pem`
 
 #### Create the Stack
-1. Choose the **Clutch 12 Stack**
+1. Choose the **Chef 12 Stack**
 2. Give the stack a name, how about **Clutch**
 3. Choose your default **VPC**
 4. Use **Linux 2017.03**
