@@ -55,6 +55,8 @@ Do the following for `staging` and `production` instances:
 5. Choose the `clutch` SSH key
 6. Choose Use **Amazon Linux 2017.03**
 7. Click the Add Instance button
+8. Create a new Elastic IP
+9. Register the EIP with the instance
 
 
 
