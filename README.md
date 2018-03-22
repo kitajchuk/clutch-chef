@@ -11,7 +11,7 @@ This Chef cookbook will configure an EC2 instance to run `nginx` and `node` for 
 
 
 ### Clutch Stack
-This section will walk through setting up the `Clutch Stack` under AWS OpsWorks.
+This section will walk through setting up the `Clutch Stack` on [AWS OpsWorks](https://aws.amazon.com/opsworks).
 
 #### Create the security group
 1. Make a new security group called `clutch`
@@ -60,5 +60,5 @@ Do the following for `staging` and `production` instances:
 
 
 
-### Usage
-Once the instances are booted up use the information from AWS to setup the [clutch project scaffold](https://github.com/kitajchuk/clutch#aws).
+### Next Steps
+Refer back to the Clutch SDK to finish the [AWS setup](https://github.com/kitajchuk/clutch#aws-setup).
