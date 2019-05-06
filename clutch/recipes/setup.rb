@@ -20,7 +20,7 @@
 
 
 
-node_version = "v6.11.0"
+node_version = "v10.15.3"
 npm_version = "latest"
 node_bin = "/usr/local/bin"
 
