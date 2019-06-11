@@ -140,15 +140,15 @@ end
 
 
 # Step 7.0: yarn install
-commands = [
-    "wget https://yarnpkg.com/install.sh",
-    "chmod +x install.sh",
-    "./install.sh --nightly",
-    "rm -rf install.sh"
-]
+# commands = [
+#     "wget https://yarnpkg.com/install.sh",
+#     "chmod +x install.sh",
+#     "./install.sh --nightly",
+#     "rm -rf install.sh"
+# ]
 
-commands.each do |com|
-    execute com do
-        command com
-    end
-end
+# commands.each do |com|
+#     execute com do
+#         command com
+#     end
+# end
