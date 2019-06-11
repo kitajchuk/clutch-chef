@@ -26,7 +26,7 @@ This section will walk through setting up the `Clutch Stack` on [AWS OpsWorks](h
 1. Choose the **Chef 12 Stack**
 2. Give the stack a name, how about **Clutch**
 3. Choose your default **VPC**
-4. Use **Linux 2017.03**
+4. Use **Amazon Linux 2**
 5. Choose your SSH key pair `clutch`
 6. Turn on custom Chef cookbooks
 7. Leave repository type as Git
@@ -51,12 +51,10 @@ Do the following for `staging` and `production` instances:
 1. Add an instance to the `clutch` stack
 2. Label the hostname `{project}-{environment}` — example: `kitajchuk-www-staging`
 3. Pick a tier size
-4. Click for advanced options
-5. Choose the `clutch` SSH key
-6. Choose Use **Amazon Linux 2017.03**
-7. Click the Add Instance button
-8. Create a new Elastic IP
-9. Register the EIP with the instance
+4. Your Stack settings should be set under Advanced
+5. Click the Add Instance button
+6. Create a new Elastic IP
+7. Register the EIP with the instance
 
 
 
