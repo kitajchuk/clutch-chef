@@ -137,4 +137,13 @@ replace_line "/etc/sudoers" do
     with "Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin:#{node_bin}"
 end
 
+
+
+# Step 7.0: crontab config for certbot+letsencrypt
+template "/etc/crontab" do
+    source "crontab"
+    action :create
+end
+
+
 # End Clutch Chef setup!
