@@ -17,4 +17,4 @@ HOME=/
 # Clutch certbot(letsencrypt) renewals
 # At 07:00 AM on the first day of every other month.
 # https://crontab.guru/#0_7_1_*/2_*
-0 7 1 */2 * root /var/www/html/.clutch/certbot.renew
+0 7 1 */2 * root export NODE_ENV=NODE_ENV; node /var/www/html/server/generators/certbot.auto.js
