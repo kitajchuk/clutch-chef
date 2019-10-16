@@ -33,7 +33,7 @@ This section will walk through setting up the `Clutch Stack` on [AWS OpsWorks](h
 2. Start fresh and add your first Stack.
 3. Choose the **Chef 12 Stack** and name it **Clutch**.
 4. Choose your default **VPC**.
-5. Use **Amazon Linux 2**.
+5. Use **Amazon Linux 2018.03**.
 6. Choose your SSH key pair `clutch`.
 7. Turn on custom Chef cookbooks.
 8. Leave repository type as Git.
