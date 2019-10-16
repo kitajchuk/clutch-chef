@@ -55,10 +55,10 @@ This section will walk through setting up the `Clutch Stack` on [AWS OpsWorks](h
 4. Click the Add App button.
 
 #### Add the Instance Environments
-Do the following for `staging` and `production` instances:
+Do the following for `development` and `production` instances:
 
 1. Add an instance to the `clutch` stack.
-2. Label the hostname `{app}-{environment}` — example: `clutch-staging`.
+2. Label the hostname `{app}-{env}` — example: `clutch-dev`.
 3. Pick a tier size.
 4. Your Stack settings should be set under Advanced.
 5. Set a volume size.
