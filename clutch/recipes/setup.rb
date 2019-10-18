@@ -50,18 +50,6 @@ end
 
 
 
-# crontab config for certbot+letsencrypt
-# template "/etc/crontab" do
-#     action :delete
-# end
-#
-# template "/etc/crontab" do
-#     source "crontab"
-#     action :create
-# end
-
-
-
 # php-fpm config
 replace_line "/etc/php-fpm.d/www.conf" do
     replace /^listen =.*$/
