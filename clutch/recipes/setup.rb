@@ -42,7 +42,7 @@ end
 
 
 
-# Step 2.0: nginx config
+# nginx config
 template "/etc/nginx/nginx.conf" do
     source "nginx.conf"
     action :create
@@ -50,7 +50,19 @@ end
 
 
 
-# Step 3.0: php-fpm config
+# crontab config for certbot+letsencrypt
+template "/etc/crontab" do
+    action :delete
+end
+
+template "/etc/crontab" do
+    source "crontab"
+    action :create
+end
+
+
+
+# php-fpm config
 replace_line "/etc/php-fpm.d/www.conf" do
     replace /^listen =.*$/
     with "listen = /var/run/php-fpm/php-fpm.sock"
@@ -83,7 +95,7 @@ end
 
 
 
-# Step 4.0: php config
+# php config
 replace_line "/etc/php.ini" do
     replace /^error_log =.*$/
     with "error_log = /var/log/php-error.log"
@@ -96,7 +108,7 @@ end
 
 
 
-# Step 5.0: finalization
+# finalization
 commands = [
     "chown -R root /var/www/html",
     "chmod -R 775 /var/www/html",
@@ -114,7 +126,7 @@ end
 
 
 
-# Step 6.0: node+npm install
+# node+npm install
 commands = [
     "wget https://nodejs.org/dist/#{node_version}/node-#{node_version}-linux-x64.tar.xz",
     "tar xf node-#{node_version}-linux-x64.tar.xz",
@@ -137,13 +149,6 @@ replace_line "/etc/sudoers" do
     with "Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin:#{node_bin}"
 end
 
-
-
-# Step 7.0: crontab config for certbot+letsencrypt
-template "/etc/crontab" do
-    source "crontab"
-    action :create
-end
 
 
 # End Clutch Chef setup!
