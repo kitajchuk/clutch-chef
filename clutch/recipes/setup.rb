@@ -51,14 +51,14 @@ end
 
 
 # crontab config for certbot+letsencrypt
-template "/etc/crontab" do
-    action :delete
-end
-
-template "/etc/crontab" do
-    source "crontab"
-    action :create
-end
+# template "/etc/crontab" do
+#     action :delete
+# end
+#
+# template "/etc/crontab" do
+#     source "crontab"
+#     action :create
+# end
 
 
 
